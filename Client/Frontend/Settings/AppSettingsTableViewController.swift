@@ -44,6 +44,7 @@ class AppSettingsTableViewController: SettingsTableViewController {
         var generalSettings: [Setting] = [
             SearchSetting(settings: self),
             NewTabPageSetting(settings: self),
+            CurrentTabSetting(profile: profile),
             HomePageSetting(settings: self),
             OpenWithSetting(settings: self),
             BoolSetting(prefs: prefs, prefKey: "blockPopups", defaultValue: true,
