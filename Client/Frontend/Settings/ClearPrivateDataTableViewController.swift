@@ -60,7 +60,7 @@ class ClearPrivateDataTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = Strings.SettingsClearPrivateDataTitle
+        title = Strings.SettingsDataManagementTitle
 
         tableView.register(ThemedTableSectionHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderFooterIdentifier)
 
