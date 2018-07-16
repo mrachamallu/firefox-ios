@@ -135,9 +135,8 @@ class ClearPrivateDataTableViewController: UITableViewController {
 
 //    guard indexPath.section == SectionButton else { return }
         if indexPath.section == SectionArrow {
-            print("hi")
-//            let view = SearchEnginePicker()
-//            navigationController?.pushViewController(view, animated: true)
+            let view = WebsiteDataManagement()
+            navigationController?.pushViewController(view, animated: true)
         }
         if indexPath.section == SectionButton {
             func clearPrivateData(_ action: UIAlertAction) {
