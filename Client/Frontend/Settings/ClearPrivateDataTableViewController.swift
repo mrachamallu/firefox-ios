@@ -132,8 +132,9 @@ class ClearPrivateDataTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == SectionArrow {
-            let view = WebsiteDataManagement()
+            let view = WebsiteSearchViewController()
             navigationController?.pushViewController(view, animated: true)
+            //navigationController?.setToolbarHidden(false, animated: false)
         }
         if indexPath.section == SectionButton {
             func clearPrivateData(_ action: UIAlertAction) {
