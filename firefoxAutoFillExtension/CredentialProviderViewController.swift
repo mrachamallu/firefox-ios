@@ -5,10 +5,43 @@
 //  Created by Meera Rachamallu on 8/27/18.
 //  Copyright © 2018 Mozilla. All rights reserved.
 //
-
+import UIKit
+import Shared
+import SnapKit
 import AuthenticationServices
+private let SectionHeaderFooterIdentifier = "SectionHeaderFooterIdentifier"
+class CredentialProviderViewController: ASCredentialProviderViewController, UITableViewDelegate, UITableViewDataSource {
 
-class CredentialProviderViewController: ASCredentialProviderViewController {
+    let tableView = UITableView()
+    private var navBar: UINavigationBar!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //nav bar
+        navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 44))
+        view.addSubview(navBar)
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(didPressCancel))
+        let navItem = UINavigationItem(title: "Firefox Passwords")
+        navItem.leftBarButtonItem = cancelButton
+        navBar.setItems([navItem], animated: false)
+        updateConstraints()
+
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = "meera"
+        return cell
+    }
+
 
     /*
      Prepare your UI to list available credentials for the user to choose from. The items in
@@ -56,4 +89,19 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         self.extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
     }
 
+    private func updateConstraints() {
+        tableView.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(view)
+        }
+
+        navBar.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+            make.top.equalTo(view)
+        }
+    }
+
+    @objc func didPressCancel() {
+
+    }
 }
